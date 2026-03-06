@@ -1,0 +1,240 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "133b5844-0ab2-4a98-be34-fe9c1912ddc5",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Question 1\n"
+     ]
+    },
+    {
+     "name": "stdin",
+     "output_type": "stream",
+     "text": [
+      "Enter radius:  5\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Area: 78.54\n",
+      "Circumference: 31.42\n",
+      "\n",
+      "Question 2\n"
+     ]
+    },
+    {
+     "name": "stdin",
+     "output_type": "stream",
+     "text": [
+      "Enter a string:  I have3 apples and 7 oranges\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Numbers found: [3, 7]\n",
+      "Sum: 10\n",
+      "Doubled: 20\n",
+      "\n",
+      "Question 3\n"
+     ]
+    },
+    {
+     "name": "stdin",
+     "output_type": "stream",
+     "text": [
+      "Enter numbers separated by commas:  2,3,4\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Squares: [4.0, 9.0, 16.0]\n",
+      "Maximum square: 16.0\n",
+      "Square root of sum: 5.385164807134504\n",
+      "\n",
+      "Question 4\n"
+     ]
+    },
+    {
+     "name": "stdin",
+     "output_type": "stream",
+     "text": [
+      "Enter password:  Abc123\n",
+      "Enter 5 scores separated by space:  80 85 90 75 95\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Password strength: Strong\n",
+      "Rounded average: 85\n",
+      "\n",
+      "Question 5\n"
+     ]
+    },
+    {
+     "name": "stdin",
+     "output_type": "stream",
+     "text": [
+      "Enter a paragraph:  Ali and Omar are eating apples outside\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Words starting with vowels: ['Ali', 'and', 'Omar', 'are', 'eating', 'apples', 'outside']\n",
+      "Total vowels: 16\n",
+      "Average vowel-word length: 4.57\n"
+     ]
+    }
+   ],
+   "source": [
+    "import math\n",
+    "import re\n",
+    "\n",
+    "# -------- Question 1 --------\n",
+    "print(\"Question 1\")\n",
+    "\n",
+    "radius = float(input(\"Enter radius: \"))\n",
+    "\n",
+    "def area(r):\n",
+    "    return math.pi * r * r\n",
+    "\n",
+    "circumference = lambda r: 2 * math.pi * r\n",
+    "\n",
+    "print(\"Area:\", round(area(radius), 2))\n",
+    "print(\"Circumference:\", round(circumference(radius), 2))\n",
+    "\n",
+    "\n",
+    "# -------- Question 2 --------\n",
+    "print(\"\\nQuestion 2\")\n",
+    "\n",
+    "text = input(\"Enter a string: \")\n",
+    "\n",
+    "numbers = re.findall(r'\\d+', text)\n",
+    "numbers = [int(n) for n in numbers]\n",
+    "\n",
+    "def sum_numbers(nums):\n",
+    "    return sum(nums)\n",
+    "\n",
+    "double = lambda x: x * 2\n",
+    "\n",
+    "total = sum_numbers(numbers)\n",
+    "\n",
+    "print(\"Numbers found:\", numbers)\n",
+    "print(\"Sum:\", total)\n",
+    "print(\"Doubled:\", double(total))\n",
+    "\n",
+    "\n",
+    "# -------- Question 3 --------\n",
+    "print(\"\\nQuestion 3\")\n",
+    "\n",
+    "nums = input(\"Enter numbers separated by commas: \")\n",
+    "\n",
+    "nums = [float(x) for x in nums.split(\",\")]\n",
+    "\n",
+    "square = lambda x: x ** 2\n",
+    "\n",
+    "squares = [square(n) for n in nums]\n",
+    "\n",
+    "max_square = max(squares)\n",
+    "root_sum = math.sqrt(sum(squares))\n",
+    "\n",
+    "print(\"Squares:\", squares)\n",
+    "print(\"Maximum square:\", max_square)\n",
+    "print(\"Square root of sum:\", root_sum)\n",
+    "\n",
+    "\n",
+    "# -------- Question 4 --------\n",
+    "print(\"\\nQuestion 4\")\n",
+    "\n",
+    "password = input(\"Enter password: \")\n",
+    "\n",
+    "upper = re.search(r'[A-Z]', password)\n",
+    "lower = re.search(r'[a-z]', password)\n",
+    "digit = re.search(r'[0-9]', password)\n",
+    "\n",
+    "if upper and lower and digit:\n",
+    "    strength = \"Strong\"\n",
+    "else:\n",
+    "    strength = \"Weak\"\n",
+    "\n",
+    "scores = input(\"Enter 5 scores separated by space: \")\n",
+    "scores = [float(x) for x in scores.split()]\n",
+    "\n",
+    "def avg(nums):\n",
+    "    return sum(nums) / len(nums)\n",
+    "\n",
+    "average = lambda x: avg(x)\n",
+    "\n",
+    "rounded = math.ceil(average(scores))\n",
+    "\n",
+    "print(\"Password strength:\", strength)\n",
+    "print(\"Rounded average:\", rounded)\n",
+    "\n",
+    "\n",
+    "# -------- Question 5 --------\n",
+    "print(\"\\nQuestion 5\")\n",
+    "\n",
+    "paragraph = input(\"Enter a paragraph: \")\n",
+    "\n",
+    "words = re.findall(r'\\b[aeiouAEIOU]\\w*', paragraph)\n",
+    "\n",
+    "def count_vowels(text):\n",
+    "    return sum(1 for c in text.lower() if c in \"aeiou\")\n",
+    "\n",
+    "length = lambda w: len(w)\n",
+    "\n",
+    "lengths = [length(w) for w in words]\n",
+    "\n",
+    "average_length = round(sum(lengths) / len(lengths), 2) if lengths else 0\n",
+    "\n",
+    "print(\"Words starting with vowels:\", words)\n",
+    "print(\"Total vowels:\", count_vowels(paragraph))\n",
+    "print(\"Average vowel-word length:\", average_length)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c57eb18d-c1b1-4554-a5aa-2932af6cbcb0",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python [conda env:base] *",
+   "language": "python",
+   "name": "conda-base-py"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.9"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
